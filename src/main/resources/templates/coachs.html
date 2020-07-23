@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Iteration over Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script>
+        function deleteConfirm(){
+            return confirm("do you want to delete?");
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <h1>Coachs</h1>
+    <a class="btn btn-primary" th:href="@{coachs/0}">Add</a>
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Actual</th>
+        </thead>
+        <tbody>
+            <tr th:each="coach :${coachs}">
+                <td th:text="${coach.id}"></td>
+                <td th:text="${coach.firstname}"></td>
+                <td th:text="${coach.lastname}"></td>
+                <td>
+                    <a class="btn btn-danger"  onclick="return deleteConfirm()" th:href="@{coachs/{id}/delete (id=${coach.id})}">Delete</a>
+            
+                    <a class="btn btn-secondary" th:href="@{coachs/{id} (id=${coach.id})}">Edit</a>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
+

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Spring Boot Thymeleaf Application - Iteration over Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <h1>player</h1>
+    <form action="#" th:action="@{/players}" th:object="${player}" method="post">
+    	<p>Id: <input type="text" readonly="readonly" th:field="*{id}" /></p>
+        <p>First Name: <input type="text" th:field="*{firstname}" /></p>
+        <p>last Name: <input type="text" th:field="*{lastname}" /></p>
+        <p><button type="submit">save</button> </p>
+    
+    </form>
+    </body>
+    </html>
+    
+    
