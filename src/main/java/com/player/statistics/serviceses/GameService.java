@@ -19,7 +19,8 @@ public class GameService {
     gameRepo.deleteById(id);
     }
     public Game saveGame(Game game){
-        return gameRepo.save(game);
+        return gameRepo.saveAndFlush(game);
+        //return gameRepo.save(game);
     }
     public Game getGameById(Long id){
         return gameRepo.findById(id).get();

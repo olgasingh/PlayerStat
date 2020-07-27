@@ -15,6 +15,7 @@ public class CoachService {
     CoachRepository coachRepo;
 
     public List<Coach> getAllCoachs(){
+        
         return coachRepo.findAll();
 
     }

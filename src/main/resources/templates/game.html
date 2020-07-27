@@ -6,11 +6,49 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Form</h1>
+    <h1>Game</h1>
     <form action="#" th:action="@{/games}" th:object="${game}" method="post">
     	<p>Id: <input type="text" readonly="readonly" th:field="*{id}" /></p>
         <p>Name: <input type="text" th:field="*{name}" /></p>
         <p>Game Date: <input type="date" th:field="*{gamedate}" /></p>
+
+        <table>
+            <thead>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Coach</th>
+                <th>Point</th>
+                <th>Rpoint</th>
+                </thead>
+            <tbody>
+                <tr th:each="stat, itemStat :*{statistices}">
+                    <td >
+                        <span th:text="${stat.player.firstname}"></span>
+                        <input type="hidden" th:field="*{statistices[__${itemStat.index}__].id}"/>
+                        <input type="hidden" th:field="*{statistices[__${itemStat.index}__].game.id}"/>
+                        <input type="hidden" th:field="*{statistices[__${itemStat.index}__].player.id}"/>
+                    </td>
+                    <td>
+                        <select th:field="*{statistices[__${itemStat.index}__].team.id}">
+                            <option th:each="team:${teams}" th:value="${team.id}" th:text="${team.name}"/>
+                        </select>
+                    </td>
+                    <td >
+                        <select th:field="*{statistices[__${itemStat.index}__].coach.id}">
+                            <option th:each="coach:${coachs}" th:value="${coach.id}" th:text="${coach.firstname}"/>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" th:field="*{statistices[__${itemStat.index}__].point}" />
+                    </td>
+                    <td>
+                        <input type="number" th:field="*{statistices[__${itemStat.index}__].rpoint}" />
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
         <p><button type="submit">save</button> </p>
     
     </form>
